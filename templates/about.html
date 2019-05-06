@@ -1,0 +1,96 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		<h1 class="display-3"><center>What is the Purpose of our Database?</center></h1>
+
+    </div>
+  </div>
+
+  <div class="container">
+	  <br>
+	  <h2>What Are Bacteriophages?</h2>
+	  <p> Bacteriophages are viruses that infect bacteria. Bacteriophages, or phages, are nearly infinite in our world and due to their
+		  abundancy, there is a lack of knowledge regarding these microscopic particles. Phages cannot reproduce by themselves, but they can
+		  reproduce within a host cell, or a bacterium. Phages are non-living, but possess the essential hereditary material to reproduce
+		  within a host. This genetic material is protected by a crystalline envelope called the "head" of a phage, or "capsid."</p>
+
+	  <p> Phages can undergo two types of life cycles, lytic and lysogenic:</p>
+
+	  <p> In the lytic cycle, the phage is in a "productive" phase where the host cell machinery expresses the phage genes. Therefore, coat
+		  proteins are assembled with replicated phage genomes at extremely high rates, eventually leading to lysis of the host cell. These
+		  newly produced phage particles then go on to infect new bacterial cells.</p>
+
+	  <p> In the lysogenic cycle, phages undergo a more "passive" or "dormant" phase. The phage genome becomes integrated into the host genome
+		  and remains dormant. These integrated genomes are also known as prophages. Phage genomes can remain within the host genome for many
+		  generations without disturbance. However, the phage genome eventually gets expressed, usually due to some stimulation of expression by
+		  stress factors or other natural causes. Once gene expression occurs, the phage genome then enters the lytic cycle.</p>
+
+	  <p> For more information on bacteriophages,
+		  <a href="https://www.dsmz.de/home/news-and-events/faq-phage-therapy/what-are-bacteriophages.html">click here.</a></p>
+	  <br><br>
+
+  </div>
+
+  <div class="jumbotron">
+	  <div class="container">
+		  <h2>What We Are Doing</h2>
+		  <p>Students are encouraged to undergo a year-long research project to discover bacteriophages. While viruses, specifically
+			  bacteriophages, are some of the most diverse and abundant organisms on the planet, there is still a lot of unknown
+			  information about them. The research conducted through the IWU SEA-Lab program aims at gaining an understanding of the
+			  genetic makeup of viruses. Specifically, the program focuses on discovering bacteriophages isolated from soil/water
+			  samples in the environment. Each bacteriophage has a range of hosts in which they infect. Some bacteriophages may infect
+			  only one host, while others may infect many. The purpose of using several hosts during discovery is to: </p>
+		  <ul>
+			  <li>Increase our range of knowledge on bacteriophages in general</li>
+			  <li>Contribute to the discovery of a broader range of bacteriophages</li>
+			  <li>Investigate a single bacteriophage's host range</li>
+		  </ul>
+		  <p>While the SEA-PHAGES program mainly focuses on finding viruses that infect the Mycobacteria and other hosts within
+			  the phylum Actinobacteria, there is not a database for IWU students to keep information pertaining to bacteriophages that
+			  infect Rhodobacter capsulatus and other related bacterial hosts.</p>
+	  </div>
+  </div>
+
+  <div class="container">
+
+	    <h2><center>The SEA-PHAGES Program</center></h2>
+		<br>
+		<!--<img src="https://seaphages.org/static/images/SEAPHAGES_Logo.png" alt="Generic placeholder image">-->
+		<!--<img class="col-xs-2" src="http://phagesdb.org/media/emPics/Silver_EMPic_Thumb.jpg">-->
+		<h3>What is it?</h3>
+		<p>SEA-PHAGES (Science Education Alliance-Phage Hunters Advancing Genomics and Evolutionary Science)
+			is a two-semester, discovery-based undergraduate research course that begins with simple digging in the soil or extracting
+			water samples from the environment to find new viruses, but progresses through a variety of microbiology techniques and
+			eventually to complex genome annotation and bioinformatic analyses.</p>
+
+		<p>The program aims to increase undergraduate interest and retention in the biological sciences through immediate
+			immersion in authentic, valuable, yet accessible research. By finding and naming their own bacteriophages, students
+			develop a sense of project ownership and have a ready-made personal research project at a fraction of the cost of
+			traditional apprentice-based research programs. Some of the positive effects of the SEA-PHAGES program have been
+			reported here.</p>
+
+		<p>SEA-PHAGES is jointly administered by Graham Hatfull's group at the University of Pittsburgh and the Howard Hughes
+			Medical Institute's Science Education division.</p>
+
+		<h3>How IWU Joined</h3>
+		<p>Illinois Wesleyan University joined the SEA-PHAGES program in 2011 as an Associate member of Cohort IV.</p>
+		<br>
+  </div>
+
+	<hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+{% endblock %}

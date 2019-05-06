@@ -1,0 +1,77 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+<main role="main">
+    <div class="container">
+        <form class="form-signin" action="{{ url_for('create_account') }}" method="POST">
+            <br><br>
+              <img class="mb-4" src="/docs/4.2/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <center>
+                {% for message in get_flashed_messages() %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endfor %}
+                    <h1 class="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+                </center>
+
+              <label for="inputFirstName" class="sr-only">First Name</label>
+              <input type="text" name="firstName" id="inputFirstName" class="form-control" placeholder="First Name" required>
+
+              <label for="inputLastName" class="sr-only">Last Name</label>
+              <input type="text" name="lastName" id="inputLastName" class="form-control" placeholder="Last Name" required>
+
+              <label for="inputEmail" class="sr-only">IWU Email</label>
+              <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
+
+              <label for="inputYear" class="sr-only">Graduation Year</label>
+              <input type="text" name="studentYear" id="inputYear" class="form-control" placeholder="Class of..." required>
+
+              <label for="inputUsername" class="sr-only">Unique Username</label>
+              <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+              <label for="inputPassword2" class="sr-only">Re-Enter Password</label>
+              <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Re-Enter Password" required>
+              <button class="btn btn-lg btn-success btn-block" type="submit">Sign Up</button>
+
+        </form>
+        <br><br>
+        <hr>
+    </div>
+</main>
+<!--<div class="container">-->
+	<!--<div class="jumbotron">-->
+    <!--<div class="row">-->
+        <!--<center><h1>Sign-Up</h1></center>-->
+
+
+        <!--<div style="width: 30%; margin: 30px auto;">-->
+        <!--<form action="{{ url_for('create_account') }}" method="POST">-->
+
+          <!--<div class="form-group">-->
+            <!--<label for="exampleInputEmail1">Email address</label>-->
+            <!--<input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" required>-->
+            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="exampleInputPassword1">Password</label>-->
+            <!--<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" required>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="exampleInputPassword1">Re-enter Password</label>-->
+            <!--<input type="password" name="password2" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" required>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+            <!--&lt;!&ndash;<label for="exampleInputValidation">Validation ID</label>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="password" name="valid" class="form-control" id="exampleInputValidation" aria-describedby="emailHelp" placeholder="Enter Validation ID" required>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+
+
+        <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+{% endblock %}

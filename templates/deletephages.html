@@ -1,0 +1,114 @@
+<% include partials/header %>
+
+
+<div class="container">
+    <div class="jumbotron">
+    <div class="row">
+        <center><h1>Delete: <span style="color: rgb(12,94,64);"><%=phages.phagename%></span></h1></center>
+        <center><div class="container thumbnail"><img src="<%= phages.phageimage %>"></div></center>
+            <br>
+        <div class="alert alert-danger" role="alert">
+            WARNING: You are on the "Delete" page - You cannot recover this information once deleted.
+        </div>
+        <center><h2>Review the following information carefully: </h2></center>
+        <div style="width: 30%; margin: 30px auto;">
+        <table class="table table-striped formTable">
+            	<tr>
+        	       <td>Phage's Name: </td>
+        	       <td><%=phages.phagename%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Finder's Name: </td>
+        	       <td><%=phages.foundby%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Created by User: </td>
+        	       <td><%=phages.author.username%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Year Found: </td>
+        	       <td><%=phages.yearfound%></td>
+        	   </tr>
+        	   	<tr>
+        	       <td>City Found: </td>
+        	       <td><%=phages.cityfound%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>State Found: </td>
+        	       <td><%=phages.statefound%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Country Found: </td>
+        	       <td><%=phages.countryfoundy%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>GPS Latitude: </td>
+        	       <td><%=phages.gpslat%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>GPS Longitude: </td>
+        	       <td><%=phages.gpslong%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Phage Discovery Notes: </td>
+        	       <td><%=phages.phagediscovery%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Phage Naming Notes: </td>
+        	       <td><%=phages.phagenaming%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Plaque Morphology Notes: </td>
+        	       <td><%=phages.phagemorphology%></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Cluster: </td>
+        	       <td><%=phages.cluster%></td>
+        	   </tr>
+
+
+
+        </table>
+        <br>
+            <form id="delete" action="/phages/<%= phages._id %>?_method=DELETE" method="POST">
+                <div class="form-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Still Want to Delete?</button>
+                </div>
+
+
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><center>Please Read</center></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Remember that this data will be lost. Deleting a phage from the database will result in complete removal of all information.
+                    This is also a reminder that if you are a student deleting a phage, you must have proper authorization from a professor before
+                    proceeding. A message is sent to the professor, signifying which student deleted a phage.
+                    Are you sure you want to proceed?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </form>
+
+            <a href="/phages">Go Back</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,42 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		<h1 class="display-3"><center>Supplemental Information</center></h1>
+
+    </div>
+  </div>
+
+  <div class="container">
+	  <h2>Access Useful Links</h2><br>
+		<p>Several links are listed below. Please be patient when clicking on the link, as it may take awhile for the page to load.</p>
+		<br>
+		<center><h3>Click for: </h3></center>
+
+		<a class="btn btn-success btn-lg btn-block" href="http://phagesdb.org/" role="button">PhagesDB</a>
+		<a class="btn btn-success btn-lg btn-block" href="https://discover.kbrinsgd.org/login" role="button">PECAAN Log-in Page</a>
+		<a class="btn btn-success btn-lg btn-block" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" role="button">NCBI Blast</a>
+
+		<br>
+		<h2>View the Online Lab Protocol</h2><br>
+		<p>Below are links to the official SEA-PHAGES student lab manuals. One provides information with the first semester material,
+		including all of the wet lab protocols. The other provides instructions for the annotation section of the course.</p>
+		<br>
+		<center><h3>Click for: </h3></center>
+		<a class="btn btn-success btn-lg btn-block" href="#" role="button">Wet Lab</a>
+		<a class="btn btn-success btn-lg btn-block" href="#" role="button">Dry Lab</a>
+	  <br>
+	  <hr>
+  </div>
+
+</main>
+
+{% endblock %}

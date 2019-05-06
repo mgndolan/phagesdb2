@@ -1,0 +1,46 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+	<div class="jumbotron">
+			{% for message in get_flashed_messages() %}
+                        <div class="alert alert-danger" role="alert">{{ message }}</div>
+			{% endfor %}
+			<h1 class="mainH1" style="padding-left:2em">Hello, <strong class="username">{{ username }}</strong>!</h1>
+			<br>
+	</div>
+	<div class="container">
+		<h2>User Information:</h2>
+		{% for user in userInfo %}
+			<h3 style="padding-left:2em">First Name: <strong>{{ user.firstName }}</strong></h3>
+			<h3 style="padding-left:2em">Last Name: <strong>{{ user.lastName }}</strong></h3>
+			<h3 style="padding-left:2em">IWU Email: <strong>{{ user.email }}</strong></h3>
+			<h3 style="padding-left:2em">Graduating Class: <strong>{{ user.studentYear }}</strong></h3>
+		{% endfor %}
+		<center>
+			<h2>Discovered Phages:</h2>
+		</center>
+		{% for phage in phages %}
+		<form action="{{ url_for('full_view') }}" method="get">
+           <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+           <button type="submit" class="btn btn-outline-success btn-lg btn-block">{{ phage.phageName }}</button>
+		   <br>
+        </form>
+		{% else %}
+		<p>You currently don't have any phages</p>
+		{% endfor %}
+		<br>
+		<center>
+			<h2>Collaborated Phages:</h2>
+		</center>
+		{% for phage2 in phages2 %}
+		<form action="{{ url_for('full_view') }}" method="get">
+           <input type="hidden" value="{{ phage2.phageName }}" name="phageName">
+           <button type="submit" class="btn btn-outline-success btn-lg btn-block">{{ phage2.phageName }}</button>
+		   <br>
+        </form>
+		{% else %}
+		<p>You currently don't have any phages</p>
+		{% endfor %}
+		<br>
+		<hr>
+	</div>
+{% endblock %}

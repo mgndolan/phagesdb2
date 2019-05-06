@@ -1,0 +1,193 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		<h1 class="display-3"><center>Modify a Phage</center></h1>
+
+    </div>
+  </div>
+
+  <div class="container">
+        <h2>View our phages by searching below:</h2><br>
+        <div class="form-group row">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for phage..">
+            </div>
+            <button type="submit" class="col-sm-2 btn btn-success">Search</button>
+        </div><br>
+
+
+        <h2>Or sort phages based on the following categories:</h2><br>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="col-sm-4">Phage Name:</h4>
+                        <div class="dropdown col-sm-8">
+                          <button class="btn btn-success btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select an option
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/phages/modify/ASC/Phage">Ascending (A-Z)</a>
+                            <a class="dropdown-item" href="/phages/modify/DESC/Phage">Descending (Z-A)</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="col-sm-4">Student Name:</h4>
+                        <div class="dropdown col-sm-8">
+                          <button class="btn btn-success btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select an option
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/phages/modify/ASC/Student">Ascending (A-Z)</a>
+                            <a class="dropdown-item" href="/phages/modify/DESC/Student">Descending (Z-A)</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="col-sm-4">Year Found:</h4>
+                        <div class="dropdown col-sm-8">
+                          <button class="btn btn-success btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select an option
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/phages/modify/ASC/Year">Oldest - Newest</a>
+                            <a class="dropdown-item" href="/phages/modify/DESC/Year">Newest - Oldest</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="container">
+                    <div class="row">
+                        <h4 class="col-sm-4">Cluster:</h4>
+                        <div class="dropdown col-sm-8">
+                          <button class="btn btn-success btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select an option
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/phages/modify/ASC/Cluster">Ascending (A-Z)</a>
+                            <a class="dropdown-item" href="/phages/modify/DESC/Cluster">Descending (Z-A)</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+  </div>
+    <br><br>
+<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for phage.."> &lt;!&ndash;Recently Added - Searchbar&ndash;&gt;-->
+  <div class="jumbotron">
+    <div class="container">
+        <div class="row">
+        {% for phage in phages %}
+            <!--<div class="row" style="display:flex; flex-wrap: wrap; text-align: center;">-->
+            <div class="col-3 imageSpacing">
+                <div class="phageli">
+                    <img class="phageThumbs" src="{{ phage.phageImage }}" alt="Image of {{ phage.phageName }}">
+                    <center>
+                        <form action="{{ url_for('edit_a_phage') }}" method="get" class="caption">
+                            <input type="hidden" value="{{ phage.id }}" name="id">
+                            <button type="submit" class="btn btn-outline-success" id="myUL">{{ phage.phageName }}</button>
+                        </form>
+                    </center>
+                </div>
+            </div>
+
+        {% else %}
+            <p><center>There are no phages in the database currently.</center></p>
+        {% endfor %}
+        </div>
+    </div>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <center>
+                             <a class="btn btn-success btn-lg" href="/phages/add">Add New Phage</a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+    </div>
+</main>
+
+
+
+<!--<main role="main">-->
+
+  <!--<div class="jumbotron container1">-->
+    <!--<div class="container">-->
+        <!--<br>-->
+        <!--{% for message in get_flashed_messages() %}-->
+        <!--<center><div class="alert alert-success" role="alert">{{ message }}</div></center>-->
+        <!--<br>-->
+        <!--{% endfor %}-->
+        <!--<h1 class="display-3"><center>Modify a Phage</center></h1>-->
+        <!--<p>Please choose a phage to modify or search below:</p>-->
+        <!--<div class="form-group row">-->
+            <!--<div class="col-sm-10">-->
+              <!--<input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for phage..">-->
+            <!--</div>-->
+            <!--<button type="submit" class="col-sm-2 btn btn-success">Submit</button>-->
+        <!--</div>-->
+
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="container">-->
+    <!--{% for phage in phages %}-->
+      <!--<div class="row" style="display:flex; flex-wrap: wrap; text-align: center;">-->
+
+          <!--<ul id="myUL">-->
+
+              <!--<div class="adjustable">-->
+                  <!--<li class="col-4 phageli">-->
+                      <!--<div class="thumbnail">-->
+                          <!--<img class="phageThumbs" src="{{ phage.phageImage }}" alt="Image of {{ phage.phageName }}">-->
+                          <!--<div class="caption">-->
+                              <!--<a href="/phages/{{ phage.phageName }}" class="btn btn-primary" role="button">{{ phage.phageName }}</a>-->
+                          <!--</div>-->
+                      <!--</div>-->
+                  <!--</li>-->
+              <!--</div>-->
+
+          <!--</ul>-->
+      <!--</div>-->
+    <!--{% else %}-->
+      <!--<p><center>There are no phages in the database currently.</center></p>-->
+    <!--{% endfor %}-->
+      <!--<center>-->
+          <!--<a class="btn btn-success btn-lg" href="/phages/add">Add New Phage</a>-->
+      <!--</center>-->
+      <!--<br>-->
+      <!--<hr>-->
+  <!--</div>-->
+<!--</main>-->
+
+{% endblock %}

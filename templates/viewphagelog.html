@@ -1,0 +1,69 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		{% for phage in phages %}
+		<center>
+			<h1 class="display-3">All about <span style="color: rgb(12,94,64);">{{ phage.phageName }}</span></h1>
+			<div class="container thumbnail"><img src="{{ phage.phageImage }}"></div>
+		</center>
+
+    </div>
+  </div>
+<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for phage.."> &lt;!&ndash;Recently Added - Searchbar&ndash;&gt;-->
+<center>
+	<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+
+        <form action="{{ url_for('full_view') }}" method="get">
+            <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+            <button type="submit" class="btn btn-secondary">Phage Information</button>
+        </form>
+        <form action="{{ url_for('full_view_log') }}" method="get">
+            <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+            <button type="submit" class="btn btn-secondary">Activity Log</button>
+        </form>
+
+	</div>
+</center>
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div style="width: 70%; margin: 10px auto;">
+
+        <table class="table table-striped">
+            	<tr>
+                    <td class="subhead" colspan="2"><center><strong>Activity Log</strong></center></td>
+                </tr>
+            {% for log in activityLog %}
+                <tr>
+                    <th>{{ log.username }}</th>
+                    <td>{{ log.activity }} on {{ log.datetime }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+		{% else %}
+			<p><center>There was a problem retrieving data for this bacteriophage. Please try again at a later time.</center></p>
+    	{% endfor %}
+        <br>
+            <a href="/phages">Go Back</a>
+                    </div>
+
+        </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}

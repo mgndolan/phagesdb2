@@ -1,0 +1,64 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+      <h1 class="display-3">IWU Bacteriophages</h1>
+      <p>Welcome to the IWU Bacteriophages Database, where phages discovered by Illinois Wesleyan University students are
+        stored for future research. Currently, students are working to isolate newly discovered phages from several strains
+        of bacteria, including strains from Rhodobacter capsulatus and Mycobacterium smegmatis.</p>
+      <p><a class="btn btn-dark btn-lg" href="/about" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
+    <div class="container">
+      <div class="w3-content w3-display-container">
+        <img class="mySlides" src="{{ url_for('static', filename='workbench.jpg') }}" style="width:100%">
+        <img class="mySlides" src="{{ url_for('static', filename='coffee.jpg') }}" style="width:100%">
+        <img class="mySlides" src="{{ url_for('static', filename='sound.jpg') }}" style="width:100%">
+
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+      </div>
+      <br>
+    </div>
+  <div class="jumbotron">
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>The Database</h2>
+          <p>This website provides students with user-friendly access to the Illinois Wesleyan University database.
+            Here, students can upload information pertaining to the discovery of their own newly found phages.
+            Students must first have an account, which is provided to them by their lab advisor to prevent information
+            from being stolen. Students can then add, view, modify, and delete phages with approval from an admin user.</p>
+          <p><a class="btn btn-success" href="/phages" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>About Bacteriophages</h2>
+          <p>What are bacteriophages? Why do they matter? What are we doing and why are we doing this research?
+            Click the link below to find out more about these biological entities and why you should care.</p>
+          <p><a class="btn btn-success" href="/about" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Supplemental Information</h2>
+          <p>Did you forget one of the websites? Did you lose your lab manual and need a list of the protocols?
+            On the Supplemental Information page, several items and links are listed for student's convenience.
+            This includes the wet lab manual, several links to useful websites, and much more.</p>
+          <p><a class="btn btn-success" href="/supplement" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+      <hr>
+    </div> <!-- /container -->
+  </div>
+
+</main>
+
+{% endblock %}

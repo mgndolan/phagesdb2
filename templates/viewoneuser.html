@@ -1,0 +1,63 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		{% for user in users %}
+		<center>
+			<h1 class="display-3">All about <span style="color: rgb(12,94,64);">{{ user.firstName }} {{ user.lastName }}</span></h1>
+		</center>
+
+    </div>
+  </div>
+<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for phage.."> &lt;!&ndash;Recently Added - Searchbar&ndash;&gt;-->
+	<div class="container">
+		<h2>User Information:</h2>
+            <h3 style="padding-left:2em">Username: <strong>{{ user.username }}</strong></h3>
+			<h3 style="padding-left:2em">First Name: <strong>{{ user.firstName }}</strong></h3>
+			<h3 style="padding-left:2em">Last Name: <strong>{{ user.lastName }}</strong></h3>
+			<h3 style="padding-left:2em">IWU Email: <strong>{{ user.email }}</strong></h3>
+			<h3 style="padding-left:2em">Graduating Class: <strong>{{ user.studentYear }}</strong></h3>
+		<center>
+			<h2>Discovered Phages:</h2>
+		</center>
+		{% for phage in phages %}
+		<form action="{{ url_for('full_view') }}" method="get">
+           <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+           <button type="submit" class="btn btn-outline-success btn-lg btn-block">{{ phage.phageName }}</button>
+		   <br>
+        </form>
+		{% else %}
+        <center>
+		    <p>The user has not discovered any phages</p>
+        </center>
+		{% endfor %}
+		<br>
+		<center>
+			<h2>Collaborated Phages:</h2>
+		</center>
+		{% for phage2 in phages2 %}
+		<form action="{{ url_for('full_view') }}" method="get">
+           <input type="hidden" value="{{ phage2.phageName }}" name="phageName">
+           <button type="submit" class="btn btn-outline-success btn-lg btn-block">{{ phage2.phageName }}</button>
+		   <br>
+        </form>
+		{% else %}
+        <center>
+		    <p>The user has not contributed to any phages</p>
+        </center>
+		{% endfor %}
+		<br>
+		<hr>
+	</div>
+    {% endfor %}
+
+{% endblock %}

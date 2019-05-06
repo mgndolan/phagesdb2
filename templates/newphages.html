@@ -1,0 +1,428 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+	<center>
+		<h1 class="display-3">Add a New Phage</h1>
+		<p>Use the form below to add a new phage to the database. <br> Please fill in as many fields as possible.</p>
+		<div class="alert alert-success" role="alert">
+            The fields indicated by ** are required. Please be sure to fill those out.
+        </div>
+	</center>
+    </div>
+  </div>
+
+  <div class="container">
+		<!--<div class="row">-->
+	  <div style="width: 70%; margin: 10px auto;">
+		  <form action="{{ url_for('add_phage') }}" method="POST">
+
+			  <table class="table table-striped"> <!--formTable class removed-->
+				  <!--Discovery Information-->
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Discovery Information</strong></center></td>
+				  </tr>
+
+				  <div class="form-group">
+					  <tr>
+						  <td>**Phage's Name: </td>
+						  <td><input class="form-control" type="text" name="phageName" placeholder="Phage Name" required></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Phage Image: </td>
+						  <td><input class="form-control" type="text" name="phageImage" value="http://i64.tinypic.com/2yoa0sg.jpg"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Google Doc Folder with more Images: </td>
+						  <td><input class="form-control" type="text" name="googleDocImages" placeholder="Link to Google Doc Folder"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>**Finder's Name: </td>
+						  <td><input class="form-control" type="text" name="foundBy" placeholder="Your Name" required></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>**Year Found: </td>
+						  <td><input class="form-control" type="text" name="yearFound" placeholder="Year Found" required></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>City Found: </td>
+						  <td><input class="form-control" type="text" name="cityFound" placeholder="City Found"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>State Found: </td>
+
+						  <td><select class="form-control" type="text" name="stateFound">
+							  <option value="" selected="selected">---------</option>
+								<option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AS">American Samoa</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="AA">Armed Forces Americas</option>
+								<option value="AE">Armed Forces Europe</option>
+								<option value="AP">Armed Forces Pacific</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="DC">District of Columbia</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="GU">Guam</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="MP">Northern Mariana Islands</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="PR">Puerto Rico</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VI">Virgin Islands</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+								</select></td></tr>
+							<!--<td><input class="form-control" type="text" name="phages[statefound]" placeholder="State Found"></td>-->
+							<!--</tr>-->
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Country Found: </td>
+						  <td><input class="form-control" type="text" name="countryFound" placeholder="Country Found"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>GPS Latitude: </td>
+						  <td><input class="form-control" maxlength="30" name="gpsLat" type="text" placeholder="GPS Latitude"><br/>
+							  <span class="helptext">GPS coordinates should be in decimal format.<br/>To convert from Degrees/Minutes/Seconds
+								  <br> or Degrees/Minutes format, use <a href="http://transition.fcc.gov/mb/audio/bickel/DDDMMSS-decimal.html" target="_blank">
+									  this</a> or <a href="http://www.csgnetwork.com/gpscoordconv.html" target="_blank">this</a>.</span></td></tr>
+							<!--<td><input class="form-control" type="text" name="phages[gpslat]" placeholder="GPS Latitude"></td>-->
+							<!--</tr>-->
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>GPS Longitude: </td>
+						  <td><input class="form-control" maxlength="30" name="gpsLong" type="text" placeholder="GPS Longitude"/><br/>
+							  <span class="helptext">GPS coordinates should be in decimal format.<br/>To convert from Degrees/Minutes/Seconds
+							  <br> or Degrees/Minutes format, use<a href="http://transition.fcc.gov/mb/audio/bickel/DDDMMSS-decimal.html" target="_blank">
+								  this</a> or <a href="http://www.csgnetwork.com/gpscoordconv.html" target="_blank">this</a>.</span></td></tr>
+
+							<!--<td><input class="form-control" type="text" name="phages[gpslong]" placeholder="GPS Longitude"></td>-->
+							<!--</tr>-->
+				  </div>
+				  <!--<div class="form-group">-->
+					  <!--<tr>-->
+						  <!--<td>Isolation Host: </td>-->
+						  <!--<td>-->
+							  <!--<label for="msmeg">Mycobacterium smegmatis: </label>-->
+							  <!--<input id="msmeg" type="checkbox" name="isolationHost" value="Mycobacterium smegmatis"><br>-->
+
+							  <!--<label for="yw1">Rhodobacter capsulatus YW1: </label>-->
+							  <!--<input id="yw1" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus YW1"><br>-->
+
+							  <!--<label for="yw2">Rhodobacter capsulatus YW2: </label>-->
+							  <!--<input id="yw2" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus YW1"><br>-->
+
+							  <!--<label for="b10">Rhodobacter capsulatus B10: </label>-->
+							  <!--<input id="b10" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus B10"><br>-->
+
+							  <!--<label for="b6">Rhodobacter capsulatus B6: </label>-->
+							  <!--<input id="b6" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus B6"><br>-->
+
+							  <!--<label for="iona">Rhodobacter capsulatus IONA: </label>-->
+							  <!--<input id="iona" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus IONA"><br>-->
+
+							  <!--<label for="37b4">Rhodobacter capsulatus 37B4: </label>-->
+							  <!--<input id="37b4" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus 37B4"><br>-->
+
+							  <!--<label for="stlouis">Rhodobacter capsulatus St Louis: </label>-->
+							  <!--<input id="stlouis" type="checkbox" name="isolationHost" value="Rhodobacter capsulatus St Louis"><br>-->
+						<!--</td>-->
+					  <!--</tr>-->
+				  <!--</div>-->
+				  <div class="form-group">
+					  <tr>
+						  <td>**From Enriched Soil?</th>
+						  <td><select class="form-control" name="soilSample" type="text" required>
+							  <option value="Unknown" selected="selected">Unknown</option>
+							  <option value="Yes">Yes</option>
+							  <option value="No">No</option>
+						  </select></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Brief Discovery Notes: </td>
+						  <td><textarea class="form-control" rows="3" name="phageDiscovery" placeholder="Discovery"></textarea><br>
+							<span class="helptext">If not applicable, write "N/A"<span></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+							<td>Brief Naming Notes: </td>
+							<td><textarea class="form-control" rows="3" name="phageNaming" placeholder="Naming"></textarea><br>
+							<span class="helptext">If not applicable, write "N/A"<span></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Isolation Temperature: </td>
+							<td><input class="form-control" rows="3" name="isoTemp" placeholder="Temperature"></input><br>
+							<span class="helptext">Clarify whether it is in degrees Fahrenheit or Celsius <br>
+							by indicating with "F" or "C"</span></td>
+					  </tr>
+				  </div>
+
+				  <!--Sequence Information-->
+
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Sequencing Information</strong></center></td>
+				  </tr>
+
+				  <div class="form-group">
+					  <tr>
+						  <td>Sequence Complete?</th>
+						  <td><select class="form-control" name="seqCompleted" type="text">
+									<option value="Unknown" selected="selected">Unknown</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
+						  </select></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+							<td>Sequencing Facility: </td>
+							<td><input class="form-control" rows="3" name="seqFacility" placeholder="Facility"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Sequencing Method: </td>
+						  <td><input class="form-control" rows="3" name="seqMethod" placeholder="Method"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Genome Length(bp): </td>
+						  <td><input class="form-control" rows="3" name="genomeLength" placeholder="Length of Genome"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Characteristic of Genome End: </td>
+						  <td><input class="form-control" rows="3" name="genomeEnd" placeholder="Genome End"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Overhang Length(bp): </td>
+						  <td><input class="form-control" rows="3" name="overhangLength" placeholder="Overhang Length"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Overhang Sequence: </td>
+						  <td><input class="form-control" rows="3" name="overhangSeq" placeholder="Overhang Sequence"></input></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>GC Content: </td>
+						  <td><input class="form-control" rows="3" name="gcContent" placeholder="GC Content (%)"></input><br>
+							<span class="helptext">Please write value as a percentage</span></td>
+					  </tr>
+				  </div>
+
+				  <!--Characterization-->
+
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Characterization</strong></center></td>
+				  </tr>
+
+				  <div class="form-group">
+					  <tr>
+						  <td>Cluster: </td>
+						  <td><input class="form-control" type="text" name="cluster" placeholder="Cluster"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Cluster Life Cycle: </td>
+						  <td><input class="form-control" type="text" name="clusterLife" placeholder="Life Cycle"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Annotation Status: </td>
+						  <td><input class="form-control" type="text" name="annotateStatus" placeholder="Annotation"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Brief Plaque Morphology: </td>
+						  <td><textarea class="form-control" rows="3" name="phageMorph" placeholder="Plaque Morphology"></textarea></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Morphotype: </td>
+						  <td><input class="form-control" type="text" name="morphType" placeholder="Morphotype"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Has Been Phamerated?</th>
+						  <td><select class="form-control" name="phamerated" type="text">
+							  <option value="Unknown" selected="selected">Unknown</option>
+							  <option value="Yes">Yes</option>
+							  <option value="No">No</option>
+						  </select></td>
+					  </tr>
+				  </div>
+
+				  <!--Publication Information-->
+
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Publication Information</strong></center></td>
+				  </tr>
+
+				  <div class="form-group">
+					  <tr>
+						  <td>Uploaded to GenBank?</th>
+						  <td><select class="form-control" name="genBank" type="text">
+							  <option value="Unknown" selected="selected">Unknown</option>
+							  <option value="Yes">Yes</option>
+							  <option value="No">No</option>
+						  </select></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>GenBank Link: </td>
+						  <td><input class="form-control" type="text" name="genBankLink" placeholder="Paste link"></td>
+					  </tr>
+				  </div>
+
+				  <!--Archiving Information-->
+
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Archiving Information</strong></center></td>
+				  </tr>
+
+				  <div class="form-group">
+					  <tr>
+						  <td>Archiving Status: </td>
+						  <td><input class="form-control" type="text" name="archiveStatus" placeholder="Archive Status"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Freezer Box #: </td>
+						  <td><input class="form-control" type="text" name="freezerBoxNum" placeholder="Box Number"></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Freezer Box Grid #: </td>
+						  <td><input class="form-control" type="text" name="freezerBoxGridNum" placeholder="Grid Numbers"></td>
+					  </tr>
+				  </div>
+
+				  <!--Available Files-->
+
+				  <tr>
+					  <td class="subhead" colspan="2"><center><strong>Available Files</strong></center></td>
+				  </tr>
+				  <div class="form-group">
+					  <tr>
+						  <td>Fasta File Text: </td>
+						  <td><textarea class="form-control" rows="3" name="fastaFile" placeholder="Fasta File"></textarea></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Fastq File Text: </td>
+						  <td><textarea class="form-control" rows="3" name="fastqFile" placeholder="Fastq File"></textarea></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Raw Sequence: </td>
+						  <td><textarea class="form-control" rows="3" name="rawsequenceFile" placeholder="Raw Sequence"></textarea></td>
+					  </tr>
+				  </div>
+				  <div class="form-group">
+					  <tr>
+						  <td>Extra Text: </td>
+						  <td><textarea class="form-control" rows="3" name="extraFile" placeholder="Any Additional Information"></textarea></td>
+					  </tr>
+				  </div>
+
+
+			  </table>
+			  <div class="form-group">
+				  <br>
+				  <button class="btn btn-lg btn-success btn-block" type="submit">Submit</button>
+			  </div>
+
+		  </form>
+
+		  <a href="/phages">Go Back</a>
+
+		</div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends "partial/maintemplate.html" %}
+{% block body %}
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron container1">
+    <div class="container">
+      <br>
+      {% for message in get_flashed_messages() %}
+        <center><div class="alert alert-success" role="alert">{{ message }}</div></center>
+       <br>
+      {% endfor %}
+		{% for phage in phages %}
+		<center>
+			<h1 class="display-3">All about <span style="color: rgb(12,94,64);">{{ phage.phageName }}</span></h1>
+			<div class="container thumbnail"><img src="{{ phage.phageImage }}"></div>
+		</center>
+
+    </div>
+  </div>
+<!--<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for phage.."> &lt;!&ndash;Recently Added - Searchbar&ndash;&gt;-->
+<center>
+	<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+
+        <form action="{{ url_for('full_view') }}" method="get">
+            <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+            <button type="submit" class="btn btn-secondary">Phage Information</button>
+        </form>
+        <form action="{{ url_for('full_view_log') }}" method="get">
+            <input type="hidden" value="{{ phage.phageName }}" name="phageName">
+            <button type="submit" class="btn btn-secondary">Activity Log</button>
+        </form>
+
+	</div>
+</center>
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div style="width: 70%; margin: 10px auto;">
+
+        <table class="table table-striped">
+            	<tr>
+            	    <td class="subhead" colspan="2"><center><strong>Discovery Information</strong></center></td>
+            	</tr>
+            	<tr>
+        	       <td>Phage's Name: </td>
+        	       <td>{{ phage.phagename }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Google Doc Folder with more Images: </td>
+        	       <td><a href="{{ phages.googledocimages }}">{{ phage.phagename }}</a></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Finder's Name: </td>
+        	       <td>{{ phage.foundby }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Created by User: </td>
+        	       <td>{{ phage.author }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Year Found: </td>
+        	       <td>{{ phage.yearfound }}</td>
+        	   </tr>
+        	   	<tr>
+        	       <td>City Found: </td>
+        	       <td>{{ phage.cityfound }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>State Found: </td>
+        	       <td>{{ phage.statefound }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Country Found: </td>
+        	       <td>{{ phage.countryfoundy }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>GPS Latitude: </td>
+        	       <td>{{ phage.gpslat }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>GPS Longitude: </td>
+        	       <td>{{ phage.gpslong }}</td>
+        	   </tr>
+        	   <!--<tr>-->
+        	       <!--<td>Isolation Host:</td>-->
+        	       <!--<td>-->
+					   <!--{% for host in phageHosts %}-->
+					   <!--{{ host.isolationHost }},<br>-->
+					   <!--{% endfor %}-->
+				   <!--</td>-->
+        	   <!--</tr>-->
+        	   <tr>
+        	       <td>From Enriched Soil?</td>
+        	       <td>{{ phage.soilsample }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Phage Discovery Notes: </td>
+        	       <td>{{ phage.phagediscovery }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Phage Naming Notes: </td>
+        	       <td>{{ phage.phagenaming }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Isolation Temperature: </td>
+        	       <td>{{ phage.isotemp }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Sequencing Information</strong></center></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Sequencing Complete? </td>
+        	       <td>{{ phage.seqcomplete }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Sequencing Facility: </td>
+        	       <td>{{ phage.seqfacility }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Sequencing Method: </td>
+        	       <td>{{ phage.seqmethod }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Genome Length(bp): </td>
+        	       <td>{{ phage.genomelength }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Characteristic of Genome End: </td>
+        	       <td>{{ phage.genomeend }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Overhang Length(bp): </td>
+        	       <td>{{ phage.overhanglength }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Overhang Sequence: </td>
+        	       <td>{{ phage.overhangseq }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>GC Content: </td>
+        	       <td>{{ phage.gccontent }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Characterization</strong></center></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Cluster: </td>
+        	       <td>{{ phage.cluster }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Cluster Life Cycle: </td>
+        	       <td>{{ phage.clusterlife }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Annotation Status: </td>
+        	       <td>{{ phage.annotatestatus }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Plaque Morphology Notes: </td>
+        	       <td>{{ phage.phagemorphology }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Morphotype: </td>
+        	       <td>{{ phage.morphotype }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Has Been Phamerated? </td>
+        	       <td>{{ phage.phamerated }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Publication Information</strong></center></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Uploaded to GenBank? </td>
+        	       <td>{{ phage.genbank }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>GenBank Link: </td>
+        	       <td>{{ phage.genbanklink }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Archiving Information</strong></center></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Archiving Status: </td>
+        	       <td>{{ phage.archivestatus }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Freezer Box #: </td>
+        	       <td>{{ phage.freezerboxnum }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Freezer Box Grid #: </td>
+        	       <td>{{ phage.freezerboxgridnum }}</td>
+        	   </tr>
+			   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Presentation Information</strong></center></td>
+        	   </tr>
+			   <tr>
+        	       <td>Contributors: </td>
+        	       <td></td>
+        	   </tr>
+			   <tr>
+        	       <td>Poster Link: </td>
+        	       <td></td>
+        	   </tr>
+
+        	   <tr>
+        	       <td class="subhead" colspan="2"><center><strong>Available Files</strong></center></td>
+        	   </tr>
+        	   <tr>
+        	       <td>Fasta File Text: </td>
+				   <td>{{ phage.fastaFile }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Fastq File Text: </td>
+        	       <td>{{ phage.fastqFile }}</td>
+        	   </tr>
+        	   <tr>
+        	       <td>Raw Sequence: </td>
+        	       <td>{{ phage.rawsequenceFile }}</td>
+        	   </tr>
+			   <tr>
+        	       <td>Extra Text: </td>
+        	       <td>{{ phage.extraFile }}</td>
+        	   </tr>
+
+        </table>
+		{% else %}
+			<p><center>There was a problem retrieving data for this bacteriophage. Please try again at a later time.</center></p>
+    	{% endfor %}
+        <br>
+            <a href="/phages">Go Back</a>
+                    </div>
+
+        </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}
