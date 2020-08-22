@@ -3,7 +3,7 @@
 Illinois Wesleyan University ~ Class of 2019
 
 If you have any questions, please feel free to contact me at:
-- mdolan1@iwu.edu
+- dolanmeg44@gmail.com
 ## About
 Version 2 of 2 phage database websites (Python and SQL)
 
